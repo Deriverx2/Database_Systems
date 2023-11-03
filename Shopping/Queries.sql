@@ -29,4 +29,42 @@ SELECT cust_id, count(cust_id) as 'No of Purchases', sum(price) as 'Total Cost'
     -> group by cust_id
     -> ORDER BY SUM(price);
 
---
+--display customer id by people having total price greater than 100
+SELECT cust_id, count(cust_id) as 'No of Purchases', sum(price) as 'Total Cost'
+    -> FROM prod_tb
+    -> group by cust_id
+    -> HAVING SUM(price)>100
+    -> ORDER BY SUM(price);
+
+--display cust_id,cust_name,prod_name,price for matching col on two tables
+SELECT cust_tb.cust_id,cust_tb.cust_name,
+    -> prod_tb.prod_name, prod_tb.price
+    -> FROM cust_tb INNER JOIN prod_tb
+    -> ON cust_tb.cust_id=prod_tb.cust_id;
+--using aliases
+ SELECT c.cust_id,c.cust_name,
+    -> p.prod_name, p.price
+    -> FROM cust_tb c INNER JOIN prod_tb p
+    -> ON c.cust_id=p.cust_id;
+
+--USE LEFT JOIN
+ SELECT c.cust_id,c.cust_name,
+    -> p.prod_name, p.price
+    -> FROM cust_tb c LEFT JOIN prod_tb p
+    -> ON c.cust_id=p.cust_id;
+
+--USE RIGHT JOIN
+ SELECT c.cust_id,c.cust_name,
+    -> p.prod_name, p.price
+    -> FROM cust_tb c RIGHT JOIN prod_tb p
+    -> ON c.cust_id=p.cust_id;
+
+--USE CROSS JOIN(not good for big tables)
+ SELECT c.cust_id,c.cust_name,
+    -> p.prod_name, p.price
+    -> FROM cust_tb c CROSS JOIN prod_tb p
+    -> ON c.cust_id=p.cust_id;
+
+--display(self join)
+
+
