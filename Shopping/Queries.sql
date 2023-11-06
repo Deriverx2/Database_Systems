@@ -68,3 +68,29 @@ SELECT cust_tb.cust_id,cust_tb.cust_name,
 --display(self join)
 
 
+-----------------------------------------------------------------------------------------
+--refer prod_tb and provide 10%discount for price >=200
+ UPDATE prod_tb
+    -> SET price=price*90/100
+    -> WHERE price>=200;
+
+--write a query to change cofee quantity to null
+ UPDATE prod_tb
+    -> SET Qty=null
+    -> WHERE prod_id=14;
+
+--Add a column called GST of float type
+ ALTER TABLE prod_tb
+    -> ADD GST FLOAT;
+
+--make all GST as 5%
+ UPDATE prod_tb
+    -> SET GST=price*5/100;
+
+--remove rows from table where quantity is NULL 
+ DELETE FROM prod_tb
+    -> WHERE Qty IS NULL;
+
+--display prod_name, price, Qty, GST, net price;
+ SELECT prod_name, price, Qty, GST, (price+GST)*Qty AS 'NET PRICE'
+    -> FROM prod_tb;
